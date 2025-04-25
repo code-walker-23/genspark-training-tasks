@@ -7,7 +7,7 @@ This repository contains a collection of training tasks completed as part of the
 - [Task 1](https://github.com/code-walker-23/genspark-training-tasks/tree/main/task1) – Implementation and details for Task 1.
 - [Task 2](https://github.com/code-walker-23/genspark-training-tasks/tree/main/task2) – Implementation and details for Task 2.
 - [Task 3](https://github.com/code-walker-23/genspark-training-tasks/tree/main/task3) – Implementation and details for Task 3.
-- [Task 3](https://github.com/code-walker-23/genspark-training-tasks/tree/main/task4) – Implementation and details for Task 4.
+- [Task 4](https://github.com/code-walker-23/genspark-training-tasks/tree/main/task4) – Implementation and details for Task 4.
 
 ---
 
