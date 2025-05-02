@@ -10,6 +10,7 @@ This repository contains a collection of training tasks completed as part of the
 - [Task 4](https://github.com/code-walker-23/genspark-training-tasks/tree/main/task4) – Implementation and details for Task 4.
 - [Task 5](https://github.com/code-walker-23/genspark-training-tasks/tree/main/task5) – Implementation and details for Task 5.
 - [Task 6](https://github.com/code-walker-23/genspark-training-tasks/tree/main/task6) – Implementation and details for Task 6.
+- [Homework](https://github.com/code-walker-23/genspark-training-tasks/tree/main/homework) – Implementation and details for Homework.
 
 ---
 
