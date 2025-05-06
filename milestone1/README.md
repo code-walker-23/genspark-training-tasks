@@ -1,5 +1,9 @@
 # Trello — Simplified Social Media Simulator in Java
+<<<<<<< HEAD:milestone1/README.md
 ![Project FLow](https://github.com/code-walker-23/genspark-training-tasks/blob/main/milestone1/project-flow.png)
+=======
+![Project FLow](https://github.com/code-walker-23/genspark-training-tasks/blob/main/miletone1/project-flow.png)
+>>>>>>> 67e8bd27ffa289fc027b70f67e81c676479054f3:miletone1/README.md
 
 A lightweight Java-based simulation of a social media platform where users can:
 
