@@ -1,9 +1,7 @@
 # Trello — Simplified Social Media Simulator in Java
-<<<<<<< HEAD:milestone1/README.md
+
 ![Project FLow](https://github.com/code-walker-23/genspark-training-tasks/blob/main/milestone1/project-flow.png)
-=======
-![Project FLow](https://github.com/code-walker-23/genspark-training-tasks/blob/main/miletone1/project-flow.png)
->>>>>>> 67e8bd27ffa289fc027b70f67e81c676479054f3:miletone1/README.md
+
 
 A lightweight Java-based simulation of a social media platform where users can:
 
@@ -64,21 +62,4 @@ A lightweight Java-based simulation of a social media platform where users can:
    - The top 10 tweet IDs are returned
 
 ---
-
-## 🧪 Sample Usage
-
-```java
-Trello app = new Trello();
-app.postTweet(1, 101);        // User 1 posts tweet 101
-app.follow(2, 1);             // User 2 follows User 1
-app.postTweet(2, 102);        // User 2 posts tweet 102
-
-List<Integer> feed = app.getNewsFeed(2);  // Expected: [102, 101]
-System.out.println("User 2's news feed: " + feed);
-
-app.unfollow(2, 1);           // User 2 unfollows User 1
-feed = app.getNewsFeed(2);    // Expected: [102]
-System.out.println("User 2's news feed after unfollow: " + feed);
-
-```
 
