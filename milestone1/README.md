@@ -100,9 +100,3 @@ System.out.println("User 2's news feed: " + feed);
 app.unfollow(2, 1);           // User 2 unfollows User 1
 feed = app.getNewsFeed(2);    // Expected: [102]
 System.out.println("User 2's news feed after unfollow: " + feed);
-<<<<<<< HEAD
-
-```
-
-=======
->>>>>>> d28b2f21135a2957958cc8c97e68b40dad940dad
