@@ -2,7 +2,6 @@
 
 ![Project FLow](https://github.com/code-walker-23/genspark-training-tasks/blob/main/milestone1/project-flow.png)
 
-
 A lightweight Java-based simulation of a social media platform where users can:
 
 - Post messages ("Trello tweets")
@@ -49,17 +48,41 @@ A lightweight Java-based simulation of a social media platform where users can:
 
 ---
 
-## 🔁 Flow of Execution
+## 🔁 Flow of Execution (Detailed)
 
-1. `Main` instantiates the `Trello` app.
-2. Users can:
-   - Post tweets via `postTweet(userId, tweetId)`
-   - Follow other users via `follow(followerId, followeeId)`
-   - Unfollow using `unfollow(followerId, followeeId)`
-3. When `getNewsFeed(userId)` is called:
-   - Tweets from the user and followed users are collected
-   - They are sorted by timestamp (most recent first)
-   - The top 10 tweet IDs are returned
+1. **`Main` instantiates the `Trello` app.**
+   - This creates the main application object that manages users and their interactions.
+
+2. **Users can perform the following actions:**
+
+   ### ✅ `postTweet(userId, tweetId)`
+   - **Purpose**: Allows a user to create a new tweet.
+   - **Behavior**:
+     - If the user does not exist yet, they are automatically created.
+     - A new `Tweet` object is instantiated with a unique timestamp.
+     - The tweet is added to the user’s personal tweet list.
+
+   ### ✅ `follow(followerId, followeeId)`
+   - **Purpose**: Allows one user to follow another user.
+   - **Behavior**:
+     - If the follower or followee does not exist, they are created.
+     - The `followeeId` is added to the list of users the `followerId` follows.
+
+   ### ✅ `unfollow(followerId, followeeId)`
+   - **Purpose**: Allows a user to unfollow another user.
+   - **Behavior**:
+     - If the `followerId` exists and follows the `followeeId`, the `followeeId` is removed from their follow list.
+     - Users cannot unfollow themselves (optional safeguard).
+
+   ### ✅ `getNewsFeed(userId)`
+   - **Purpose**:  To retrieve the most recent tweets visible to a user, including their own tweets and those of the users they follow.
+   - **Behavior**:  
+     - If the user doesn't exist, an empty news feed is returned.
+     - Tweets are gathered from:
+       - The user themselves (`userId`)
+       - All users they follow
+     - All collected tweets are combined and **sorted in descending order of timestamp** (most recent first).
+     - Only the **10 most recent tweet IDs** are returned as the user's personalized news feed.
 
 ---
 
@@ -77,6 +100,9 @@ System.out.println("User 2's news feed: " + feed);
 app.unfollow(2, 1);           // User 2 unfollows User 1
 feed = app.getNewsFeed(2);    // Expected: [102]
 System.out.println("User 2's news feed after unfollow: " + feed);
+<<<<<<< HEAD
 
 ```
 
+=======
+>>>>>>> d28b2f21135a2957958cc8c97e68b40dad940dad
