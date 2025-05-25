@@ -1,15 +1,18 @@
 package com.vinay.studentenrollment.controller;
 
+import com.vinay.studentenrollment.dto.StudentRequest;
 import com.vinay.studentenrollment.models.Student;
 import com.vinay.studentenrollment.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/api/students")
 public class StudentController {
 
     @Autowired
@@ -17,8 +20,9 @@ public class StudentController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public Student createStudent(@RequestBody Student student) {
-        return studentService.createStudent(student);
+    public ResponseEntity<Student> createStudent(@RequestBody StudentRequest request) {
+        Student savedStudent = studentService.createStudent(request);
+        return new ResponseEntity<>(savedStudent, HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

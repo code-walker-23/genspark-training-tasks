@@ -1,6 +1,7 @@
 package com.vinay.studentenrollment.models;
 
 import jakarta.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Student {
@@ -9,13 +10,26 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;  // Needed for authentication or linking
-
     private String name;
 
     private String email;
 
-    // === Getters and Setters ===
+    @OneToOne(optional = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, unique = true)
+    private User user;
+
+    // Constructors
+
+    public Student() {
+    }
+
+    public Student(String name, String email, User user) {
+        this.name = name;
+        this.email = email;
+        this.user = user;
+    }
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -23,14 +37,6 @@ public class Student {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getName() {
@@ -47,5 +53,13 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

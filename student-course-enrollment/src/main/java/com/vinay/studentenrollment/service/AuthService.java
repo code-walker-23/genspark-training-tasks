@@ -1,6 +1,7 @@
 package com.vinay.studentenrollment.service;
 
 import com.vinay.studentenrollment.dto.RegisterRequest;
+import com.vinay.studentenrollment.exception.UsernameAlreadyExistsException;
 import com.vinay.studentenrollment.models.User;
 import com.vinay.studentenrollment.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class AuthService {
 
     public String registerUser(RegisterRequest request) {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
-            return "Username already exists";
+            throw new UsernameAlreadyExistsException("Username '" + request.getUsername() + "' already exists");
         }
 
         User user = new User();

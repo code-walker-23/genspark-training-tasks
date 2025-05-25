@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Course {
@@ -15,11 +16,11 @@ public class Course {
     private String title;
     private String description;
 
-    // Constructors
+    // No-arg constructor
     public Course() {}
 
-    public Course(Long id, String title, String description) {
-        this.id = id;
+    // Constructor without id (for creating new instances)
+    public Course(String title, String description) {
         this.title = title;
         this.description = description;
     }
@@ -49,4 +50,5 @@ public class Course {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

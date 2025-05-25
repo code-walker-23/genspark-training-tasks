@@ -23,7 +23,7 @@ public class SecurityConfig {
         this.userDetailsService = userDetailsService;
     }
 
-    // Configure AuthenticationManager manually
+    // AuthenticationManager with DaoAuthenticationProvider
     @Bean
     public AuthenticationManager authenticationManager() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -32,26 +32,27 @@ public class SecurityConfig {
         return new ProviderManager(authProvider);
     }
 
-    // Password encoder bean
+    // BCrypt password encoder
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
 
-    // Security filter chain
+    // Security filter chain configuration
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless APIs
+                .csrf(csrf -> csrf.disable()) // CSRF disabled for stateless REST APIs
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()             // Public endpoints
-                        .requestMatchers("/admin/**").hasRole("ADMIN")       // Admin role required
-                        .requestMatchers("/student/**").hasRole("STUDENT")   // Student role required
-                        .anyRequest().authenticated()                        // All others must be authenticated
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/students/**").hasRole("ADMIN")
+                        .requestMatchers("/api/courses/**").hasAnyRole("ADMIN", "STUDENT")
+                        .requestMatchers("/api/enrollments/**").hasAnyRole("ADMIN", "STUDENT")
+                        .anyRequest().authenticated()
                 )
-                .httpBasic(httpBasic -> {}) // Enable Basic Auth
+                .httpBasic(httpBasic -> {}) // Enable HTTP Basic Authentication
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // No session state
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 );
 
         return http.build();

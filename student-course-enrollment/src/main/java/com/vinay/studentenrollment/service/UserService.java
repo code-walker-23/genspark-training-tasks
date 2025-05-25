@@ -1,5 +1,6 @@
 package com.vinay.studentenrollment.service;
 
+import com.vinay.studentenrollment.exception.UserAlreadyExistsException;
 import com.vinay.studentenrollment.models.User;
 import com.vinay.studentenrollment.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,13 +22,13 @@ public class UserService {
     public User registerUser(String username, String rawPassword, String role) {
         Optional<User> existingUser = userRepository.findByUsername(username);
         if(existingUser.isPresent()){
-            throw new RuntimeException("User already exists");
+            throw new UserAlreadyExistsException("User already exists with username: " + username);
         }
 
         User user = new User();
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(rawPassword));
-        user.setRole(role);
+        user.setRole(role.toUpperCase());  // Normalize role to uppercase
 
         return userRepository.save(user);
     }

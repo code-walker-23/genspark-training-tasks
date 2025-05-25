@@ -1,5 +1,6 @@
 package com.vinay.studentenrollment.controller;
 
+import com.vinay.studentenrollment.dto.EnrollmentRequest;
 import com.vinay.studentenrollment.models.Enrollment;
 import com.vinay.studentenrollment.models.Course;
 import com.vinay.studentenrollment.models.Student;
@@ -12,46 +13,64 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/enrollments")
+@RequestMapping("/api/enrollments")
 public class EnrollmentController {
 
     @Autowired
     private EnrollmentService enrollmentService;
 
+    @PostMapping("/self")
     @PreAuthorize("hasRole('STUDENT')")
-    @PostMapping
-    public Enrollment enrollStudent(@RequestBody Enrollment enrollment) {
-        return enrollmentService.enrollStudent(enrollment);
+    public Enrollment enrollSelf(@RequestBody EnrollmentRequest request, Authentication authentication) {
+        String username = authentication.getName();
+        return enrollmentService.enrollStudentByUsername(username, request.getCourseId());
     }
 
+    @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
+    public Enrollment enrollByAdmin(@RequestBody EnrollmentRequest request) {
+        return enrollmentService.enrollStudent(request.getStudentId(), request.getCourseId());
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void deleteEnrollment(@PathVariable Long id) {
+        enrollmentService.deleteEnrollment(id);
+    }
+
+    @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<Enrollment> getAllEnrollments() {
+        return enrollmentService.getAllEnrollments();
+    }
+
     @GetMapping("/student/{studentId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Enrollment> getByStudent(@PathVariable Long studentId) {
         return enrollmentService.getEnrollmentsByStudentId(studentId);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/course/{courseId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Enrollment> getByCourse(@PathVariable Long courseId) {
         return enrollmentService.getEnrollmentsByCourseId(courseId);
     }
 
-    // Student-only: get enrollments of logged-in student
+    @GetMapping("/me")
     @PreAuthorize("hasRole('STUDENT')")
-    @GetMapping("/my")
     public List<Enrollment> getMyEnrollments(Authentication authentication) {
         String username = authentication.getName();
         return enrollmentService.getEnrollmentsForLoggedInStudent(username);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/student/{studentId}/courses")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Course> getCoursesByStudent(@PathVariable Long studentId) {
         return enrollmentService.getCoursesByStudent(studentId);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/course/{courseId}/students")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Student> getStudentsByCourse(@PathVariable Long courseId) {
         return enrollmentService.getStudentsByCourse(courseId);
     }

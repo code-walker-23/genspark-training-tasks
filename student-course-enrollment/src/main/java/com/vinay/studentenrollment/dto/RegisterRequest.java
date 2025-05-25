@@ -1,11 +1,24 @@
 package com.vinay.studentenrollment.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 public class RegisterRequest {
+
+    @NotBlank(message = "Username is required")
+    @Size(max = 50, message = "Username must be at most 50 characters")
     private String username;
+
+    @NotBlank(message = "Password is required")
+    @Size(min = 6, max = 100, message = "Password must be between 6 and 100 characters")
     private String password;
+
+    @NotBlank(message = "Role is required")
+    @Pattern(regexp = "ADMIN|STUDENT", message = "Role must be either 'ADMIN' or 'STUDENT'")
     private String role;
 
-    // Getter and Setter for username
+    // Getters and Setters
     public String getUsername() {
         return username;
     }
@@ -14,7 +27,6 @@ public class RegisterRequest {
         this.username = username;
     }
 
-    // Getter and Setter for password
     public String getPassword() {
         return password;
     }
@@ -23,7 +35,6 @@ public class RegisterRequest {
         this.password = password;
     }
 
-    // Getter and Setter for role
     public String getRole() {
         return role;
     }
