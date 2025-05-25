@@ -2,6 +2,7 @@ package com.vinay.studentenrollment.service;
 
 import com.vinay.studentenrollment.models.Course;
 import com.vinay.studentenrollment.repository.CourseRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +23,25 @@ public class CourseService {
     }
 
     public Course getCourseById(Long id) {
-        return courseRepository.findById(id).orElse(null);
+        return courseRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Course not found with ID: " + id));
     }
 
     public void deleteCourse(Long id) {
+        if (!courseRepository.existsById(id)) {
+            throw new EntityNotFoundException("Course not found with ID: " + id);
+        }
         courseRepository.deleteById(id);
+    }
+
+    // ✅ Corrected updateCourse method (uses setTitle instead of setName)
+    public Course updateCourse(Long id, Course updatedCourse) {
+        Course existing = courseRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Course not found with ID: " + id));
+
+        existing.setTitle(updatedCourse.getTitle());
+        existing.setDescription(updatedCourse.getDescription());
+
+        return courseRepository.save(existing);
     }
 }

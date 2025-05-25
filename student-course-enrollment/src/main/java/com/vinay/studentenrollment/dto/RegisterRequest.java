@@ -1,32 +1,11 @@
-package com.vinay.studentenrollment.models;
+package com.vinay.studentenrollment.dto;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(unique = true)
+public class RegisterRequest {
     private String username;
-
     private String password;
-
     private String role;
 
-    // Getters and Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    // Getter and Setter for username
     public String getUsername() {
         return username;
     }
@@ -35,6 +14,7 @@ public class User {
         this.username = username;
     }
 
+    // Getter and Setter for password
     public String getPassword() {
         return password;
     }
@@ -43,6 +23,7 @@ public class User {
         this.password = password;
     }
 
+    // Getter and Setter for role
     public String getRole() {
         return role;
     }
