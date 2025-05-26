@@ -55,7 +55,7 @@ student-course-enrollment/
 
 ## 📊 Entity Relationship Diagram
 
-![Entity Diagram](https://i.imgur.com/2JRY4nP.png)
+![Entity Diagram](https://github.com/code-walker-23/genspark-training-tasks/blob/main/student-course-enrollment/database-design.png)
 
 * Many-to-Many between Students and Courses
 * `Enrollment` acts as the join table with `enrollmentDate`
