@@ -1,4 +1,73 @@
+<<<<<<< HEAD
 ### Authentication (Public)
+=======
+# Student Course Enrollment System
+
+This project was developed as a part of a genspark-assigned technical task. It showcases a complete backend system (with optional frontend) to manage student-course enrollments. The system demonstrates proficiency in building enterprise-grade REST APIs using **Spring Boot**, along with modern authentication, relational data modeling, and deployment best practices.
+
+---
+
+## 📌 Features Implemented
+
+### 👨‍🏫 Admin Functionality
+
+* Manage students and courses (CRUD operations)
+* View and filter enrollments
+* Secure role-based access
+
+### 👨‍🎓 Student Functionality
+
+* View available courses
+* Enroll in multiple courses
+* Check own enrollments
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer    | Technology                              |
+| -------- | --------------------------------------- |
+| Backend  | Spring Boot, Spring Data JPA, Hibernate |
+| Database | PostgreSQL (hosted on Railway/Render)   |
+| Frontend | (Optional) React, Axios                 |
+| Security | Spring Security, JWT Authentication     |
+
+---
+
+## 📐 Architecture Overview
+
+![Architecture Diagram](https://i.imgur.com/X7U9e7j.png)
+
+> REST APIs protected via JWT, interacting with a hosted PostgreSQL database. Frontend can optionally consume these APIs.
+
+---
+
+## 📦 Backend Structure (Spring Boot)
+
+```
+student-course-enrollment/
+├── controller/        # REST Controllers
+├── model/             # Entity Classes (Student, Course, Enrollment)
+├── repository/        # JPA Interfaces
+├── service/           # Business Logic and Service Layer
+├── config/            # Security Configurations
+└── EnrollmentApplication.java
+```
+
+---
+
+## 📊 Entity Relationship Diagram
+
+![Entity Diagram](https://github.com/code-walker-23/genspark-training-tasks/blob/main/student-course-enrollment/database-design.png)
+
+* Many-to-Many between Students and Courses
+* `Enrollment` acts as the join table with `enrollmentDate`
+
+---
+
+## 🔁 API Endpoints Overview
+
+>>>>>>> f14d39e7915c0a4f7f5c0a6af4242352dc1ce67b
 ### Authentication
 
 | Method | Endpoint             | Description                 |
