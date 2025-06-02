@@ -14,6 +14,7 @@ This repository contains a collection of training tasks completed as part of the
 - [Task 8](https://github.com/code-walker-23/genspark-training-tasks/tree/main/task8) – Implementation and details for Task 8.
 - [Task 9](https://github.com/code-walker-23/genspark-training-tasks/tree/main/task9) – Implementation and details for Task 9.
 - [Task 10](https://github.com/code-walker-23/genspark-training-tasks/tree/main/task10) – Implementation and details for Task 10.
+- [Task 11](https://github.com/code-walker-23/genspark-training-tasks/tree/main/task11) – Implementation and details for Task 11.
 - [Homework](https://github.com/code-walker-23/genspark-training-tasks/tree/main/homework) – Implementation and details for Homework.
 - [Milestone Project-1](https://github.com/code-walker-23/genspark-training-tasks/tree/main/milestone1) – Implementation and details for Project.
 - [Milestone Project-2](https://github.com/code-walker-23/genspark-training-tasks/tree/main/milestone2) – Implementation and details for Project.
