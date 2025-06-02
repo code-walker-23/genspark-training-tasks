@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-### Authentication (Public)
-=======
 # Student Course Enrollment System
-
-This project was developed as a part of a genspark-assigned technical task. It showcases a complete backend system (with optional frontend) to manage student-course enrollments. The system demonstrates proficiency in building enterprise-grade REST APIs using **Spring Boot**, along with modern authentication, relational data modeling, and deployment best practices.
-
----
-
 ## 📌 Features Implemented
 
 ### 👨‍🏫 Admin Functionality
@@ -34,13 +26,6 @@ This project was developed as a part of a genspark-assigned technical task. It s
 
 ---
 
-## 📐 Architecture Overview
-
-![Architecture Diagram](https://i.imgur.com/X7U9e7j.png)
-
-> REST APIs protected via JWT, interacting with a hosted PostgreSQL database. Frontend can optionally consume these APIs.
-
----
 
 ## 📦 Backend Structure (Spring Boot)
 
@@ -67,17 +52,11 @@ student-course-enrollment/
 
 ## 🔁 API Endpoints Overview
 
->>>>>>> f14d39e7915c0a4f7f5c0a6af4242352dc1ce67b
-### Authentication
 
 | Method | Endpoint             | Description                 |
 |--------|----------------------|-----------------------------|
-| POST   | `/api/auth/register` | Register a new user          |
-| POST   | `/api/auth/login`    | Login (using Basic Auth headers) |
-```
-POST /auth/register         # Register new users
-POST /auth/login            # Login and receive JWT
-```
+| POST   | `/api/auth/signup` | Register a new user          |
+| POST   | `/api/auth/signin`    | Login (using Basic Auth headers) |
 
 ### Students
 
