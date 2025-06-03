@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Pet from "./Pet";
 import useBreedList from "../hooks/useBreedList.js";
 
-const ANIMALS = ["Dog", "Cat", "Bird", "Rabbit", "Reptile"];
+const ANIMALS = ["dog", "cat", "bird", "rabbit", "reptile"];
 
 const SearchParams = () => {
   console.log("My Search Params Component Rendered ");
