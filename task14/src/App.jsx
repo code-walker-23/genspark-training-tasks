@@ -1,38 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const App = () => {
   const [count, setCount] = useState(0);
-  const [inputValue, setInputValue] = useState(0);
+  const [inputValue, setInputValue] = useState("");
 
   function decrementHandler() {
-    setCount((prev) => {
-      const newCount = prev - 1;
-      setInputValue(newCount);
-      return newCount;
-    });
+    setCount((prev) => prev - 1);
   }
 
   function incrementHandler() {
-    setCount((prev) => {
-      const newCount = prev + 1;
-      setInputValue(newCount);
-      return newCount;
-    });
+    setCount((prev) => prev + 1);
   }
+
+  useEffect(() => {
+    setInputValue(count);
+    console.log(count);
+  }, [count]);
 
   function resetHandler() {
     setCount(0);
-    setInputValue(0);
   }
 
   function userInputHandler(event) {
-    const value = +event.target.value;
+    const value = event.target.value;
     setInputValue(value);
   }
-
   function submitHandler(e) {
     e.preventDefault();
-    setCount(+inputValue);
+    if (inputValue != "") setCount(+inputValue);
   }
 
   return (
@@ -45,11 +40,7 @@ export const App = () => {
         <button onClick={incrementHandler}>➕ Increment</button>
       </div>
       <form onSubmit={submitHandler} className="counter-form">
-        <input
-          type="number"
-          value={inputValue}
-          onChange={userInputHandler}
-        />
+        <input type="number" value={inputValue} onChange={userInputHandler} />
         <button type="submit">Update Counter</button>
       </form>
     </section>
