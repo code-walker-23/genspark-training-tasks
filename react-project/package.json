@@ -1,20 +1,19 @@
 {
   "name": "frill-reactjs",
   "version": "1.0.0",
-  "description": "",
+  "description": "Frill ReactJS App",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html",
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
   },
-  "author": "vinay chhabra",
+  "author": "Vinay Chhabra",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
-    "parcel": "^2.0.0",
+    "parcel": "^2.12.0",
     "prettier": "^2.7.1"
   },
   "dependencies": {
