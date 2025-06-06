@@ -1,6 +1,6 @@
 export const getPetFilters = async () => {
   try {
-    const response = await fetch("http://pets-v2.dev-apis.com/pets");
+    const response = await fetch("https://pets-v2.dev-apis.com/pets");
     if (!response.ok) {
       throw new Error("Failed to fetch pet data");
     }

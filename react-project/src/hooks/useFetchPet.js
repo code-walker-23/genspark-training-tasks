@@ -15,7 +15,7 @@ const useFetchPetWithId = (petId, setPets, location = "", breed = "", animal = "
       if (petId) queryParams.append("id", petId);
 
       const response = await fetch(
-        `http://pets-v2.dev-apis.com/pets?${queryParams.toString()}`
+        `https://pets-v2.dev-apis.com/pets?${queryParams.toString()}`
       );
 
       if (!response.ok) {
