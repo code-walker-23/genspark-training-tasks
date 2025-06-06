@@ -1,0 +1,13 @@
+.pet-image {
+  width: 75px;
+  height: 75px;
+  margin: 5px;
+  border-radius: 50%;
+  border: 2px solid #333;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.pet-image:hover {
+  transform: scale(1.1);
+}

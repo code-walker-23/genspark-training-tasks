@@ -1,0 +1,72 @@
+/* PetShimmer.css */
+.shimmer {
+  animation: shimmer 1.5s infinite linear;
+  background: #f6f7f8;
+  background-image: linear-gradient(
+    to right,
+    #f6f7f8 0%,
+    #edeef1 20%,
+    #f6f7f8 40%,
+    #f6f7f8 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 1000px 100%;
+  position: relative;
+}
+
+.shimmer-img {
+  width: 100px;
+  height: 100px;
+  margin: 0px 20px 0px 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+
+.shimmer-text {
+  width: 80%;
+  float: left;
+  padding-top: 10px;
+}
+
+.shimmer-line {
+  height: 18px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background-color: #ddd;
+}
+
+.shimmer-line-lg {
+  width: 60%;
+  height: 24px;
+}
+
+.shimmer-line-md {
+  width: 50%;
+}
+
+.shimmer-line-sm {
+  width: 90%;
+  height: 14px;
+}
+
+.shimmer-carousel {
+  margin-top: 15px;
+}
+
+.shimmer-circle {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ddd;
+  margin: 0 5px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
