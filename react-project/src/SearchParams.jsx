@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Pets from "./component/pet/Pets";
 import { getPetFilters } from "./utils/getPetFilters";
 import useFetchPetWithId from "./hooks/useFetchPet";
+import { getBreeds } from "./utils/getBreeds";
 
 const SearchParams = () => {
   const [location, setLocation] = useState("");
@@ -23,14 +24,23 @@ const SearchParams = () => {
 
   useEffect(() => {
     const fetchFilters = async () => {
-      const { locations, breeds, animals } = await getPetFilters();
+      const { locations, animals } = await getPetFilters();
       setLocations(locations);
-      setBreeds(breeds);
       setAnimals(animals);
     };
 
     fetchFilters();
   }, []);
+
+  useEffect(() => {
+    const fetchBreeds = async () => {
+      setBreed(""); // clear previous breed
+      const breeds = await getBreeds(animal);
+      setBreeds(breeds);
+    };
+
+    fetchBreeds();
+  }, [animal]);
 
   return (
     <div className="search-params">
