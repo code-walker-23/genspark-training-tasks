@@ -9,18 +9,16 @@ const SearchParams = () => {
   const [location, setLocation] = useState("");
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
-  const [pets, setPets] = useState([]);
   const [locations, setLocations] = useState([]);
   const [breeds, setBreeds] = useState([]);
   const [animals, setAnimals] = useState([]);
 
-  const { loading, error } = useFetchPetWithId(
-    "",
-    setPets,
-    location,
-    breed,
-    animal
-  );
+  const {
+    data: pets = [],
+    isLoading,
+    isError,
+    error,
+  } = useFetchPetWithId("", location, breed, animal);
 
   useEffect(() => {
     const fetchFilters = async () => {
@@ -99,10 +97,10 @@ const SearchParams = () => {
         <button type="submit">Submit</button>
       </form>
 
-      {loading ? (
+      {isLoading ? (
         <h2>Loading pets...</h2>
-      ) : error ? (
-        <h2>Error: {error}</h2>
+      ) : isError ? (
+        <h2>Error: {error.message}</h2>
       ) : (
         <Pets pets={pets} />
       )}

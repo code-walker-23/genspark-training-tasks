@@ -1,41 +1,33 @@
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 
-const useFetchPetWithId = (petId, setPets, location = "", breed = "", animal = "") => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const fetchPets = async ({ queryKey }) => {
+  const [_key, { petId, location, breed, animal }] = queryKey;
 
-  const fetchDetail = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const queryParams = new URLSearchParams();
-      if (animal) queryParams.append("animal", animal);
-      if (location) queryParams.append("location", location);
-      if (breed) queryParams.append("breed", breed);
-      if (petId) queryParams.append("id", petId);
+  const params = new URLSearchParams();
+  if (animal) params.append("animal", animal);
+  if (location) params.append("location", location);
+  if (breed) params.append("breed", breed);
+  if (petId) params.append("id", petId);
 
-      const response = await fetch(
-        `https://pets-v2.dev-apis.com/pets?${queryParams.toString()}`
-      );
+  const response = await fetch(
+    `https://pets-v2.dev-apis.com/pets?${params.toString()}`
+  );
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch pet data");
-      }
+  if (!response.ok) {
+    throw new Error("Failed to fetch pet data");
+  }
 
-      const data = await response.json();
-      setPets(data?.pets || []);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const data = await response.json();
+  return data?.pets || [];
+};
 
-  useEffect(() => {
-    fetchDetail();
-  }, [petId, location, breed, animal]);
-
-  return { loading, error };
+const useFetchPetWithId = (petId, location = "", breed = "", animal = "") => {
+  return useQuery({
+    queryKey: ["pets", { petId, location, breed, animal }],
+    queryFn: fetchPets,
+    enabled: true,
+    staleTime: 1000 * 6, 
+  });
 };
 
 export default useFetchPetWithId;

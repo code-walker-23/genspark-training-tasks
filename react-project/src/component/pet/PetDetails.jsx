@@ -1,34 +1,37 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Pet from "./Pet";
 import useFetchPetWithId from "../../hooks/useFetchPet";
 import PetShimmer from "../shimmer/PetShimmer";
 
 const PetDetails = () => {
-  const [pets, setPets] = useState([]);
   const { id } = useParams();
 
-  const { loading, error } = useFetchPetWithId(id, setPets);
+  const {
+    data: pets = [],
+    isLoading,
+    isError,
+    error,
+  } = useFetchPetWithId(id);
 
   if (!id) return <p>Invalid pet ID.</p>;
-  if (loading) {
+  if (isLoading) {
     return (
       <div>
-        {[...Array(pets?.length || 2)].map((_, i) => (
+        {[...Array(2)].map((_, i) => (
           <PetShimmer key={i} />
         ))}
       </div>
     );
   }
-  if (error) return <div>Error: {error}</div>;
+  if (isError) return <div>Error: {error.message}</div>;
 
   return (
     <div>
       <h2>
         You clicked pet with ID: <strong>{id}</strong>
       </h2>
-      {pets?.length > 0 ? (
+      {pets.length > 0 ? (
         pets.map((pet) => {
           const {
             id,
